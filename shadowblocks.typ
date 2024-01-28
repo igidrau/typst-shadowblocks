@@ -23,16 +23,18 @@
 #let shadow-block(
   width: auto, height: auto, radius: 0pt, outset: 0pt,
   blur: 0pt, dx: 10pt, dy: 10pt, col1: rgb(0,0,0).lighten(30%), col2: rgb(255,255,255,255),
+  shadow-outset: 0pt,
   ..args, body
 ) = {
   let bwidth = if (type(width) == ratio) {100%} else {width}
   let bheight = if (type(height) == ratio) {100%} else {height}
   let outset = parse-outset(outset)
+  let shadow-outset = parse-outset(shadow-outset)
   let shadow-outset = (
-      left: -dx+outset.left,
-      right: dx+outset.right,
-      top: -dy+outset.top,
-      bottom: dy+outset.bottom,
+      left: shadow-outset.left - dx+outset.left,
+      right: shadow-outset.right + dx+outset.right,
+      top: shadow-outset.top - dy+outset.top,
+      bottom: shadow-outset.bottom + dy+outset.bottom,
     )
   block(
     radius: radius,
@@ -53,8 +55,8 @@
         let blur = 100% - (2*blur / radius) * 100%
         let dx = dx 
         let dy = dy
-        let bwidth = bsize.width - 2*radius + outset.left + outset.right
-        let bheight = bsize.height - 2*radius + outset.top + outset.bottom
+        let bwidth = bsize.width - 2*radius + shadow-outset.left + shadow-outset.right
+        let bheight = bsize.height - 2*radius + shadow-outset.top + shadow-outset.bottom
         let corn-grad = gradient.radial.with(col1, col2, radius: 100%, focal-radius: blur)
         
         place(top+left, dx: -shadow-outset.left, dy: -shadow-outset.top,
