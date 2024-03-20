@@ -73,22 +73,22 @@
             fill: corn-grad(center:(100%,0%))))
         
         place(top+center, dx: dx, dy:  -shadow-outset.top,
-          rect(height: radius * (100% - blur), width: bwidth,
+          rect(height: radius * (100% - blur), width: bwidth + 1pt,
             fill: gradient.linear(dir: btt, col1, col2)))
         place(horizon+right, dx: shadow-outset.right, dy: dy,
-          rect(width: radius * (100% - blur), height: bheight,
+          rect(width: radius * (100% - blur), height: bheight + 1pt,
             fill: gradient.linear(dir: ltr, col1, col2)))
         place(bottom+center, dx: dx, dy: shadow-outset.bottom,
-          rect(height: radius * (100% - blur), width: bwidth,
+          rect(height: radius * (100% - blur), width: bwidth + 1pt,
             fill: gradient.linear(dir: ttb, col1, col2)))
         place(horizon+left, dx: -shadow-outset.left, dy: dy,
-          rect(width: radius * (100% - blur), height: bheight,
+          rect(width: radius * (100% - blur), height: bheight + 1pt,
             fill: gradient.linear(dir: rtl, col1, col2)))
         
         place(horizon+center, dx: dx, dy: dy,
-          rect(width: bwidth + 2*radius * blur, height: bheight, fill: col1))
+          rect(width: bwidth + 2*radius * blur + 1pt, height: bheight + 1pt, fill: col1))
         place(horizon+center, dx: dx, dy: dy,
-          rect(width: bwidth, height: bheight + 2*radius * blur, fill: col1))
+          rect(width: bwidth + 1pt, height: bheight + 2*radius * blur + 1pt, fill: col1))
       }
       (body)
     }))
